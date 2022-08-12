@@ -1,4 +1,16 @@
 {
 	"token": "bot token here",
-	"prefix": "!"
+	"prefix": "!", 
+
+	"perms": [
+		"put IDs for roles with permission to use certain commands",
+		"as integers"
+	],
+
+	"tiers": {
+		"a": "tier ID as integer",
+		"b": "tier ID as integer",
+		"c": "tier ID as integer",
+		"d": "tier ID as integer"
+	}
 }
