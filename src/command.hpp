@@ -1,18 +1,30 @@
 #pragma once
 
+#include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 
 class Command {
   public:
-    Command(const std::string& desc,
-            void (*command_func)(const dpp::slashcommand_t&))
-        : description(desc), command(command_func) {}
+    Command(
+        std::function<void(dpp::cluster&, const dpp::slashcommand_t&)> command,
+        const std::string& description)
+        : command_with_cluster(command),
+          description(description),
+          requires_cluster(true) {}
 
-    const std::string get_description() { return description; };
+    Command(std::function<void(const dpp::slashcommand_t&)> command,
+            const std::string&                              description)
+        : command(command), description(description), requires_cluster(false) {}
 
-    void run(const dpp::slashcommand_t& event) { command(event); };
+    const std::string get_description();
+
+    void run(dpp::cluster& bot, const dpp::slashcommand_t& event);
 
   private:
+    std::function<void(dpp::cluster&, const dpp::slashcommand_t&)>
+                                                    command_with_cluster;
+    std::function<void(const dpp::slashcommand_t&)> command;
+
     const std::string description;
-    void (*command)(const dpp::slashcommand_t&);
+    bool              requires_cluster;
 };
