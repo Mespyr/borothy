@@ -32,4 +32,5 @@
 *.app
 
 borothy
+!borothy/
 BOT_TOKEN
