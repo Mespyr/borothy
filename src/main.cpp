@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "borothy.hpp"
+#include "borothy/borothy.hpp"
 
 int main() {
     std::fstream file("./BOT_TOKEN");

@@ -2,7 +2,7 @@ CPP=g++
 CPPFLAGS=-Wall -Wextra -pedantic
 LDFLAGS=-ldpp
 
-SRC_DIRS=src
+SRC_DIRS=src src/borothy
 SRC_FILES=$(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
 HEADERS=$(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.hpp))
 
