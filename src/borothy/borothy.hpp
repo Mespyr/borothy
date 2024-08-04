@@ -5,12 +5,14 @@
 #include <dpp/dispatcher.h>
 #include <dpp/dpp.h>
 #include <dpp/message.h>
+#include <dpp/permissions.h>
 #include <dpp/snowflake.h>
-#include <dpp/appcommand.h>
 
 #include <algorithm>
+#include <chrono>
 #include <cstdint>
 #include <sstream>
+#include <thread>
 #include <unordered_map>
 
 #include "../command.hpp"
@@ -36,5 +38,11 @@ class Borothy {
     static inline std::unordered_map<std::string, Command> commands = {
         {"ping", Command(ping_pong, "Ping pong!")},
         {"about", Command(about, "Learn about Borothy")},
-        {"purge", Command(purge, "Delete some messages")}};
+        {"purge",
+         Command(purge, "Clear some messages",
+                 {dpp::command_option(dpp::co_integer, "limit",
+                                      "max amount of messages to delete", true)
+                      .set_min_value(1)
+                      .set_max_value(100)},
+                 dpp::p_administrator)}};
 };

@@ -1,4 +1,5 @@
 #include <dpp/dpp.h>
+#include <dpp/permissions.h>
 
 #include <fstream>
 #include <iostream>

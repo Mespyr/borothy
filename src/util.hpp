@@ -5,4 +5,4 @@
 
 #include <string>
 
-dpp::embed create_one_liner(std::string msg);
+dpp::embed create_embed(const std::string& msg);
