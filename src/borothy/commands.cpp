@@ -1,5 +1,3 @@
-#include <dpp/message.h>
-
 #include "borothy.hpp"
 
 void ping_pong(const dpp::slashcommand_t& event) {
@@ -15,7 +13,6 @@ void about(const dpp::slashcommand_t& event) {
 }
 
 void purge(dpp::cluster& bot, const dpp::slashcommand_t& event) {
-    // TODO: check permissions for message
     dpp::command_value e = event.get_parameter("limit");
     int64_t            limit = std::get<int64_t>(e);
     bot.messages_get(
@@ -66,5 +63,6 @@ void purge(dpp::cluster& bot, const dpp::slashcommand_t& event) {
                 dpp::message(event.command.channel_id, embed)
                     .set_flags(dpp::m_ephemeral));
         });
+
 	event.thinking(true);
 }
